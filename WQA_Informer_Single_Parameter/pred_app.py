@@ -39,13 +39,13 @@ model = Informer(
 model.load_state_dict(torch.load(
     "./checkpoints/Ganga-BOD-Test/Ganga-BOD-Test.pth",
     map_location=config['device']
-))
+)) #provide route to the trained model file
 model.eval()
 
 scaler_input = joblib.load("scaler_input.pkl")
-scaler_bod = joblib.load("scaler_bod.pkl")
+scaler_bod = joblib.load("scaler_bod.pkl") 
 
-data = pd.read_csv("./data/SWD_informers.csv")
+data = pd.read_csv("data.csv")  # Load/refer your data
 data.columns = data.columns.str.strip()
 data['Month'] = pd.to_datetime(data['Month'], format='%m')
 data['month'] = data['Month'].dt.month - 1
