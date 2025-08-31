@@ -1,0 +1,40 @@
+body.welcome-page {
+    background-color: #e3f2fd;  /* Light blue background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.center-box {
+    text-align: center;
+}
+
+.title {
+    font-size: 60px;
+    color: #0277bd;  /* Light Blue */
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 24px;
+    color: #00838f;  /* Teal shade */
+    margin-bottom: 30px;
+}
+
+.start-button {
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    padding: 18px 36px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+    background-color: #01579b;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome to BOD Predictor</title>
+    <style>
+        body {
+            background: url("/static/water_quality.jpg") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #01579b;
+            flex-direction: column;
+            text-align: center;
+        }
+        h1 {
+            font-size: 64px;
+            margin-bottom: 0;
+            color:#144269;
+        }
+        p {
+            font-size: 28px;
+            margin-top: 5px;
+            margin-bottom: 30px;
+            color: #3b7a5f;
+        }
+        button {
+            background-color: #0288d1;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 28px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0277bd;
+        }
+    </style>
+</head>
+<body>    
+    <h1> Welcome to BOD Predictor</h1>
+    <p>Predict Biochemical Oxygen Demand with our Informer Model</p>
+    <button onclick="window.location.href='/predict'">🚀 Start Prediction</button>
+</body>
+</html>

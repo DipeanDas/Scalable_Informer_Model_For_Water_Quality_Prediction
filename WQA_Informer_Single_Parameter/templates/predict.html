@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>BOD Prediction</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right,#dcedc8,#a7ffeb);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        .left-panel, .right-panel {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .left-panel {
+            width: 40%;
+            overflow-y: auto;
+            border-right: 2px solid #0288d1;
+        }
+        .right-panel {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        h1 {
+            color: #31665a;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        p.subtitle {
+            color: #444444;
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            font-size: 13px; /* Smaller font */
+        }
+        table, th, td {
+            border: 2px solid #0288d1;
+        }
+        th, td {
+            padding: 6px; /* Smaller padding */
+            text-align: left;
+            color: #01579b;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 15px 0 5px;
+            color: #314266;
+        }
+        select, input[type=number] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0288d1;
+            color: white;
+            border: none;
+            padding: 15px 0;
+            font-size: 22px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 30px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0277bd;
+        }
+        .result, .error {
+            margin-top: 30px;
+            font-size: 20px;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .result {
+            color: #00695c;
+            background-color: #b2dfdb;
+        }
+        .error {
+            color: #b71c1c;
+            background-color: #ffcdd2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="left-panel">
+    <h2>📍 Location Mapping</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Location ID</th>
+                <th>Location Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in location_df %}
+            <tr>
+                <td>{{ row['Location ID'] }}</td>
+                <td>{{ row['Location Name'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="right-panel">
+    <h1>BOD Prediction</h1>
+    <p class="subtitle">Enter location and date details to predict BOD.</p>
+
+    <form method="POST">
+        <label for="location_num">Location ID</label>
+        <select name="location_num" id="location_num" required>
+            {% for row in location_df %}
+                <option value="{{ row['Location ID'] }}"
+                    {% if selected_location_id == row['Location ID'] %} selected {% endif %}>
+                    {{ row['Location ID'] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="target_month">Month</label>
+        <select name="target_month" id="target_month" required>
+            {% for month in range(1, 13) %}
+                <option value="{{ month }}"
+                    {% if target_month == month %} selected {% endif %}>
+                    {{ month }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="target_year">Year</label>
+        <input type="number" id="target_year" name="target_year" min="23" max="26" value="{{ target_year if target_year else 25 }}" required>
+
+        <button type="submit">🚀 Predict BOD</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if result %}
+        <div class="result">
+            <strong>Prediction Details</strong> <strong><br>Location Name: {{ selected_location_name }}</strong><br>
+            <strong>Time:</strong><strong>{{ target_month }}/{{ target_year }}</strong><br>
+            <strong>Predicted BOD value:</strong><strong>{{ "%.4f"|format(result) }} mg/L</strong>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
