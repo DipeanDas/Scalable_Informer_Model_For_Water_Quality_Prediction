@@ -1,0 +1,26 @@
+Metrics for BOD (mg/l):
+  MSE:  0.0995
+  MAE:  0.1918
+  RMSE: 0.3155
+  R²:   0.5878
+  PLCC: 0.7751
+  SRCC: 0.7886
+  KRCC: 0.6421
+
+Metrics for COD (mg/l):
+  MSE:  1.9479
+  MAE:  0.9833
+  RMSE: 1.3957
+  R²:   0.7294
+  PLCC: 0.8721
+  SRCC: 0.8532
+  KRCC: 0.7019
+
+Metrics for DO (mg/l):
+  MSE:  0.1168
+  MAE:  0.2644
+  RMSE: 0.3417
+  R²:   0.8380
+  PLCC: 0.9184
+  SRCC: 0.9124
+  KRCC: 0.7597
