@@ -1,16 +1,13 @@
 <h1>Scalable Informer Model For Water Quality Prediction</h1>
 
-This repository contains the implementation of a **Scalable Informer-based deep learning architecture** for **water quality forecasting**.  
-The model was primarily trained and tested on **multivariate water quality data** collected from **15 locations of the Ganges River (2022–2024)**.  
-Although demonstrated on the Ganges dataset, the architecture is **generalizable**, **customizable** and can be applied to **other river systems or water quality monitoring datasets**.  
-
+This repository contains the implementation of a **Scalable Informer-based deep learning architecture** for **water quality forecasting**. The model was primarily trained and tested on **multivariate water quality data** collected from various locations of the **Ganges River**. Although demonstrated on the Ganges dataset, the architecture is **generalizable**, **customizable** and can be applied to **other river systems or water quality monitoring datasets**. 
 An interactive **Flask-based web interface** is also developed to deploy the trained model for real-time prediction and visualization.
 
 ##📊Training Dataset Overview:
  - Source: Ganges River water quality dataset.
  - Time Period: 2022-2024
  - Locations Count: 15
- - Water Quality parameters count: 23
+ - Water Quality parameters count: 23[BOD, COD, DO, pH, TDS,TC,FC,Nitrate and others]
  - Contextual parameters count: 3[Location. Year, Month]
  - Target Parameter: Biochemical Oxygen Demand (BOD). 
  - The last column is the prediction target (BOD), while all other columns are input features.
@@ -76,7 +73,45 @@ This project was developed and tested with the following dependencies:
 ```
 ## ⚙️ Installation
 Clone the repository and install the required dependencies:
-```bash
+```
 git clone https://github.com/DipeanDas/Scalable_Informer_Model_For_Water_Quality_Prediction.git
 cd Scalable_Informer_Model_For_Water_Quality_Prediction
 pip install -r requirements.txt 
+```
+## 🚀 Usage
+###1️⃣ Training the Informer Model
+
+After customizing and setting up configuration parameter values, run the training pipeline using:
+```
+python main.py
+```
+This will:
+- Load the dataset
+- Train the Informer model
+- Validate on held-out data
+- Save the best model checkpoint under ./checkpoints/
+- Metrics such as MSE, MAE, RMSE, R², PLCC, SRCC, KRCC will be reported in txt file.
+
+###2️⃣ Running the Web Application
+
+Once the training is complete and trained model is saved, launch the Flask app:
+```
+python app.py
+```
+Here:
+- The app connects to the trained Informer model.
+- Provides an interactive interface for prediction.
+
+**NOTE:** UI elements and features can be customized easily within app.py and templates files as per requirement.
+
+## 🌍 Applications
+
+- Scalable to other rivers or aquatic systems.
+- Predict different water quality parameters (by adjusting target column).
+- Useful for environmental monitoring, policy-making, and decision support systems.
+
+##👨‍💻 Contributors
+
+**Dipean Dasgupta** (Department of CSE, IIIT Vadodara, India)
+**Bishnu Prasad Sahoo** (Forest Ecology and Climate Change Division, Forest Research Institute, Dehradun, India)
+**Pramit Mazumdar** (Department of CSE, IIIT Vadodara, India)
